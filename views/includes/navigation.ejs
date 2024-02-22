@@ -1,0 +1,55 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/top-ten' ? 'active' : '' %>" href="/top-ten">Top Movies</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/upcoming' ? 'active' : '' %>" href="/upcoming">Upcoming Movies</a>
+            </li>
+            <% if(isAuthenticated){ %>
+            <li class="main-header__item">
+                <a class="<%= path === '/user/recommended' ? 'active' : '' %>" href="/user/recommended">Recommended Movies</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/user/wishlist' ? 'active' : '' %>" href="/user/wishlist">My Wishlist</a>
+            </li>
+            
+            <li class="main-header__item">
+                <a class="<%= path === '/user/watched-movie' ? 'active' : '' %>" href="/user/watched-movie">Watched Movie
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/user/edit' ? 'active' : '' %>" href="/user/edit">User Dashboard
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/user/add-movie' ? 'active' : '' %>" href="/user/add-movie">Add Movie
+                </a>
+            </li>
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if(!isAuthenticated){ %>
+            <li class="main-header__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+            </li>
+            <% } else{ %>
+                <li class="main-header__item">
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

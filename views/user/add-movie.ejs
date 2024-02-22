@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/movie.css">
+</head>
+<% const genres = ['Action', 'Comedy', 'Drama', 'Horror', 'Romance']; %>
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+      
+        <form class="product-form" action="/user/add-movie" method="POST">
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="">
+            </div>
+            <div class="form-control">
+                <label for="genre">Genre</label>
+                <select name="genre" id="genre">
+                    <% genres.forEach(genre => { %>
+                        <option value="<%= genre %>"><%= genre %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="storyLine">Story Line</label>
+                <input type="text" name="storyLine" id="storyLine" value="">
+            </div>
+            <div class="form-control">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" name="imageUrl" id="imageUrl" value="">
+            </div>
+            <div class="form-control">
+                <label for="length">Length in Minutes</label>
+                <input type="number" name="length" id="length" step="0.01" value="">
+            </div>
+            <div class="form-control">
+                <label for="cast">Cast</label>
+                <textarea name="cast" id="cast" rows="5"></textarea>
+            </div>
+            <div class="form-control">
+                <label for="releaseDate">Release Date</label>
+                <input type="date" name="releaseDate" id="releaseDate">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <button class="btn" type="submit">Add Movie</button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

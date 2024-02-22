@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/movie.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (movies.length > 0) { %>
+            <div class="grid">
+                <% for (let movie of movies) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= movie.name %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="<%= movie.imageUrl %>"
+                                alt="<%= movie.name %>">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price"><%= movie.length %> Minutes</h2>
+                            <h3><b><ins>Released Date</ins>  : </b></h3><p><%= movie.releaseDate %></p>
+                            <h3><b><ins>Story Line</ins>  : </b></h3><p><%= movie.storyLine %>.</p>
+                            <h3><b><ins>Cast</ins>  : </b></h3><p><%= movie.cast %></p>
+                        </div>
+                        <div class="card__actions">
+                            <a href="/user/wishlist/<%= movie.id %>" class="btn">Add to Wishlist</a>
+                    </div>
+                    <div class="card__actions">
+                        <a href="/user/watched/<%= movie.id %>" class="btn">Watch</a>
+                </div>
+                    </article>
+            </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <h1>No Movies Found!</h1>
+    <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>
